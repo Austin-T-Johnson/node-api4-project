@@ -10,6 +10,10 @@ server.get('/', (req, res) => {
     res.send(`<h1>${process.env.MESSAGE}</h1>`)
 })
 
+server.get('/api/hello', (req,res) => {
+    res.send({ message: 'hello from api!'})
+})
+
 server.use((err, req, res, next) => {
     res.status(500).json({
         message: err.message,
