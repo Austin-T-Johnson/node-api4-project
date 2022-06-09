@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const Users = require('./users-model');
 
 const server = express();
 
@@ -18,6 +19,13 @@ server.use((err, req, res, next) => {
     res.status(500).json({
         message: err.message,
         stack: err.stack
+    })
+})
+
+server.get('/api/users', (req, res) => {
+    Users.findAll()
+    .then(result => {
+        res.json(result);
     })
 })
 
