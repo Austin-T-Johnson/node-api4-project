@@ -34,7 +34,7 @@ server.get('/api/users', (req, res) => {
 server.post('/api/login', (req,res) => {
      let { username, password } = req.body;
      if(username == req.body.username && password == req.body.password ) {
-        res.send({ message: 'welcome!'})
+        res.send({ message: `welcome ${req.body.username}!`})
     } else {
          console.log(error => {
         res.status(500).json({ message: 'where the username or password bruh?' });
