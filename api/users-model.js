@@ -5,15 +5,15 @@ function getId() {
 }
 
 const users = [
-    { id: getId(), name: 'Frodo Baggins' },
-    { id: getId(), name: 'Samwise Gamgee' },
-    { id: getId(), name: 'Meriadoc Brandybuck' },
-    { id: getId(), name: 'Peregrin Took' },
-    { id: getId(), name: 'Mithrandir' },
-    { id: getId(), name: 'Boromir' },
-    { id: getId(), name: 'Legolas' },
-    { id: getId(), name: 'Gimli' },
-    { id: getId(), name: 'Aragorn' },
+    { id: getId(), name: 'Frodo Baggins', username: "fodo", password: "baggins" },
+    { id: getId(), name: 'Samwise Gamgee', username: "samwise", password: "gamgee" },
+    { id: getId(), name: 'Meriadoc Brandybuck', username: "meriadoc", password: "brandybuck" },
+    { id: getId(), name: 'Peregrin Took', username: "Peregrin", password: "Took" },
+    { id: getId(), name: 'Mithrandir', username: "Mithrandir", password: "Mithrandir" },
+    { id: getId(), name: 'Boromir', username: "Boromir", password: "Boromir" },
+    { id: getId(), name: 'Legolas', username: "Legolas", password: "Legolas" },
+    { id: getId(), name: 'Gimli', username: "Gimli", password: "Gimli" },
+    { id: getId(), name: 'Aragorn', username: "Aragorn", password: "Aragorn" },
   ];
   
   module.exports = {
@@ -27,6 +27,11 @@ const users = [
         return user
     },
 
+    async add({name, username, password}) {
+        const newUser = { id: getId(), name, username, password}
+        users.push(newUser)
+        return newUser
+      },
 
 
 

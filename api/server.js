@@ -11,6 +11,8 @@ server.get('/', (req, res) => {
     res.send(`<h1>${process.env.MESSAGE}</h1>`)
 })
 
+
+
 server.get('/api/hello', (req,res) => {
     res.send({ message: 'hello from api!'})
 })
@@ -28,5 +30,31 @@ server.get('/api/users', (req, res) => {
         res.json(result);
     })
 })
+
+server.post('/api/register', (req,res)=> {
+    let { name, username, password } = req.body;
+    if(typeof username != 'string' || username === '') {
+        res.status(400).json({ message: 'invalid username' });
+        return;
+    } else if(typeof password != 'string' || password === '') {
+        res.status(400).json({ message: 'invalid password' });
+        return;
+    } else if(typeof name != 'string' || name === '') {
+        res.status(400).json({ message: 'invalid name' });
+        return;
+    }
+    name = name.trim();
+    username = username.trim();
+    password= password.trim();
+    Users.add({ name: name, username: username, password: password })
+        .then(user => {
+            res.status(201).json(user);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ message: 'Error adding the user' });
+        });
+});
+
 
 module.exports = server
